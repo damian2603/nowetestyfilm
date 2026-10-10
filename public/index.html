@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101014">
+  <title>Muse Player — Twoja playlista</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.7.3/dist/hls.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<main>
+  <header><a class="brand" href="./"><span class="mark">▶</span> MUSE <b>PLAYER</b></a><span class="badge">M3U8 + VTT</span></header>
+  <section class="intro">
+    <p class="eyebrow">JEDEN LINK. CAŁY SERIAL.</p>
+    <h1>Wklej link.<br><span>Odcinki już czekają.</span></h1>
+    <p class="description">Wczytaj serial z my-muse i oglądaj z automatycznie dopasowanymi napisami.</p>
+    <form id="importForm">
+      <label for="seriesUrl">Link do serialu</label>
+      <div class="import-row"><input id="seriesUrl" type="url" required placeholder="https://my-muse.ai/pl/video/…" autocomplete="url" spellcheck="false"><button class="primary" id="importButton" type="submit">Wczytaj serial <span>↗</span></button></div>
+    </form>
+    <button id="example" class="text-button" type="button">Użyj przykładu: Skazane na siebie</button>
+    <p id="importStatus" class="status" role="status" aria-live="polite">Wklej link, aby utworzyć playlistę.</p>
+  </section>
+  <section id="viewer" hidden>
+    <div class="series-heading"><div><p class="eyebrow">TWOJA PLAYLISTA</p><h2 id="seriesTitle"></h2><p id="seriesInfo" class="muted"></p></div><a id="originalLink" target="_blank" rel="noopener">Strona serialu ↗</a></div>
+    <div class="layout">
+      <div>
+        <div class="screen"><video id="video" controls playsinline crossorigin="anonymous" preload="metadata"></video></div>
+        <p id="playStatus" class="status" role="status" aria-live="polite"></p>
+        <p id="subStatus" class="status muted" role="status"></p>
+        <div class="controls">
+          <button id="prev" type="button">← Poprzedni</button><select id="episode" aria-label="Odcinek"></select><button id="next" class="primary" type="button">Następny →</button>
+        </div>
+        <div class="settings">
+          <label>Napisy<select id="subtitleLanguage" aria-label="Język napisów"></select></label>
+          <label>Opóźnienie napisów (s)<input id="delay" type="number" min="-60" max="60" step="0.1" value="0"></label>
+          <label class="check"><input id="autonext" type="checkbox" checked> Następny odcinek automatycznie</label>
+        </div>
+        <div class="downloads"><button id="downloadM3u" type="button">↓ Playlista M3U</button><button id="downloadJson" type="button">↓ Dane JSON</button><a id="videoLink" target="_blank" rel="noopener">M3U8 ↗</a><a id="subLink" target="_blank" rel="noopener">VTT ↗</a></div>
+      </div>
+      <aside><div class="aside-heading"><h3>Odcinki</h3><span id="episodeCount" class="badge"></span></div><div id="episodeList"></div></aside>
+    </div>
+  </section>
+  <footer>Muse Player · Odtwarzanie bez pobierania filmów</footer>
+</main>
+</body>
+</html>
